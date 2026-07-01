@@ -1,0 +1,18 @@
+name: Deploy to Production
+
+# トリガー：mainブランチへのPush時のみ実行
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: ./deploy.sh
+        env:
+          # 秘密鍵などはコードに直接書かず、Secretsから読み込む
+          API_KEY: ${{ secrets.PROD_API_KEY }}
+

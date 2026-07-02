@@ -26,7 +26,7 @@ npm test
 - `.github/pull_request_template.md` — PR テンプレート
 - `labels.json` — プロジェクト共通のラベル定義（種別・PR・Issue・タスク分解・コメント・ステータスの6カテゴリ）
 
-## <a id="HowToUse">使い方</a>
+## 使い方<a id="HowToUse"></a>
 1. このリポジトリを新規プロジェクトの雛形として使用する
 2. `sum.js` / `sum.test.js` などのサンプルコードを実際の実装・テストに置き換える
 3. 雛形部分（CI/CD・Issue/PR テンプレート・Dependabot 設定）はそのまま利用する

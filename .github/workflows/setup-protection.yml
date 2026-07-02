@@ -1,0 +1,42 @@
+name: Setup Branch Protection
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-protection:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      administration: write
+    steps:
+      - name: Set branch protection
+        env:
+          GH_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: |
+          gh api \
+            --method PUT \
+            -H "Accept: application/vnd.github+json" \
+            "/repos/${{ github.repository }}/branches/main/protection" \
+            -f "required_status_checks=null" \
+            -F "enforce_admins=true" \
+            -f "required_pull_request_reviews[required_approving_review_count]=1" \
+            -f "restrictions=null"
+
+      - name: Disable this workflow after first run
+        env:
+          GH_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: |
+          gh workflow disable "Setup Branch Protection" \
+            --repo ${{ github.repository }}
+
+      - name: Remove this workflow file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          rm .github/workflows/setup-protection.yml
+          git add .
+          git commit -m "chore: remove setup workflow after initial run"
+          git push

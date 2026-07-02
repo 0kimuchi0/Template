@@ -3,7 +3,6 @@
 
 
 ## 関連タスク
-<!-- 関連するIssueやチケットのリンクを貼る。Issueの場合は、「#<IssueNumber>」でリンクできる -->
 <!-- 「Closes #<IssueNumber>」 と書くと、このPRがマージされた瞬間に、リンクされたIssueが自動的に完了（Close） します -->
 
 

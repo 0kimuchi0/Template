@@ -57,7 +57,7 @@ labels-config sync --owner {owner} --repo {repo} --file labels.json --dry-run   
 labels-config sync --owner {owner} --repo {repo} --file labels.json --delete-extra   # 反映
 ```
 
-`--owner`・`--repo`を毎回指定するのが面倒な場合は、記事内で紹介されているシェル関数（`labels-sync`）を導入すると、現在のディレクトリから自動でリポジトリ情報を取得してくれます。詳しくは記事の [基本形式](https://zenn.dev/ait/articles/zenn-labels-config-guide#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F) を参照してください。
+`--owner`・`--repo`を毎回指定するのが面倒な場合は、記事内で紹介されているシェル関数（`labels-sync`）を導入すると、現在のディレクトリから自動でリポジトリ情報を取得してくれます。詳しくは記事(https://zenn.dev/ait/articles/zenn-labels-config-guide) を参照してください。
 
 ### GitHub Actionsで自動化する場合
 本テンプレートには `.github/workflows/sync-labels.yml` を同梱済みです。`labels.json` を編集して `main` に push するだけで、GitHub Actions が自動でラベルを同期します。初回のみ、Actionsタブから `Sync Labels` を手動実行してください（詳細は「使い方」参照）。

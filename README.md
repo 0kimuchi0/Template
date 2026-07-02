@@ -33,9 +33,37 @@ npm test
 4. GitHub の「Actions」タブから `Sync Labels` ワークフローを手動実行（Run workflow）し、`labels.json` に定義されたラベルを反映する
    - 以後は `labels.json` を編集して `main` に push すると自動で同期される
 
+## ラベル管理について
+GitHubのラベルは、リポジトリを作るたびに手動で作り直すのが面倒になりがちです。このテンプレートでは [labels-config](https://zenn.dev/ait/articles/zenn-labels-config-guide) というツールを使い、`labels.json` に定義した内容をコマンド一つ（またはpush時に自動で）GitHubへ反映できるようにしています。
+
+まだ導入したことがない方向けに、最低限の使い方を紹介します。
+
+### 導入手順
+```bash
+# 1. GitHub CLI のセットアップ（未導入の場合）
+gh auth login
+
+# 2. labels-config のインストール
+npm install -g @asagiri-design/labels-config
+
+# 3. 動作確認
+labels-config --version
+```
+
+### ローカルで手動同期する場合
+```bash
+# プロジェクトのディレクトリで実行
+labels-config sync --owner {owner} --repo {repo} --file labels.json --dry-run   # 事前確認
+labels-config sync --owner {owner} --repo {repo} --file labels.json --delete-extra   # 反映
+```
+
+`--owner`・`--repo`を毎回指定するのが面倒な場合は、記事内で紹介されているシェル関数（`labels-sync`）を導入すると、現在のディレクトリから自動でリポジトリ情報を取得してくれます。詳しくは[記事](https://zenn.dev/ait/articles/zenn-labels-config-guide) を参照してください。
+
+### GitHub Actionsで自動化する場合
+本テンプレートには `.github/workflows/sync-labels.yml` を同梱済みです。`labels.json` を編集して `main` に push するだけで、GitHub Actions が自動でラベルを同期します。初回のみ、Actionsタブから `Sync Labels` を手動実行してください（詳細は「[使い方](#使い方)」参照）。
+
 ## ブランチ保護ルールの設定
 このテンプレートから作成したリポジトリでは、CI/CD やレビューを確実に機能させるため、`main` ブランチに保護ルールを設定することを推奨します。
-
 Template repository は Branch protection rules をコピーしないため、新規プロジェクトを作るたびに以下の手動設定が必要です。
 
 1. リポジトリの **Settings** → **Branches** を開く

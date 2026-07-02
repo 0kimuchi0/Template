@@ -55,3 +55,11 @@ gh api --method PUT /repos/{owner}/{repo}/branches/main/protection \
   -F "enforce_admins=true" \
   -f "restrictions=null"
 ```
+
+## GitHub Projectsで進捗を管理する
+タスクの進捗をカンバン方式で共有します。
+
+1. 「Projects」タブ → 「New project」→「Board」テンプレートで作成
+2. Issueを追加し、「Todo」「In Progress」「Done」で管理
+
+おすすめ：ビュー設定で「Group by: Assignees」にすると担当者ごとのスイムレーン表示になり、負荷の偏りが一目でわかります。

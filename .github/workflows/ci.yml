@@ -1,4 +1,7 @@
 name: Run Tests
+permissions:
+  contents: read
+  pull-requests: write
 
 # いつ実行するか：mainへのPush時と、PR作成時
 on:

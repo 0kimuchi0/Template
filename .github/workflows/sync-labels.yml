@@ -6,6 +6,7 @@ on:
       - 'labels.json'
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   issues: write
